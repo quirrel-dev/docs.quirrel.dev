@@ -8,6 +8,15 @@ module.exports = {
   organizationName: "quirrel-dev", // Usually your GitHub org/user name.
   projectName: "Quirrel", // Usually your repo name.
   themeConfig: {
+    announcementBar: {
+      id: 'supportus',
+      content:
+        '⭐️ If you like Quirrel, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/quirrel-dev/quirrel">GitHub</a>! ⭐️',
+    },
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/palenight'),
+    },
     navbar: {
       title: "Quirrel",
       logo: {
@@ -15,6 +24,7 @@ module.exports = {
         src: "https://tailwindui.com/img/logos/workflow-mark-on-white.svg",
         href: "https://quirrel.dev",
       },
+      hideOnScroll: true,
       items: [
         {
           to: "/",
@@ -38,6 +48,10 @@ module.exports = {
             {
               label: "Getting Started",
               to: "/",
+            },
+            {
+              label: "Deploy to Vercel",
+              to: "/deployments/vercel",
             },
           ],
         },
@@ -64,6 +78,19 @@ module.exports = {
             {
               label: "GitHub",
               href: "https://github.com/quirrel-dev",
+            },
+          ],
+        },
+        {
+          title: "Legal",
+          items: [
+            {
+              label: "Privacy",
+              to: "https://quirrel.dev/privacy",
+            },
+            {
+              label: "Terms",
+              href: "https://quirrel.dev/terms",
             },
           ],
         },
