@@ -4,7 +4,7 @@ title: Deploy to Vercel
 
 This guide assumes you've already setup your account on [quirrel.dev](https://quirrel.dev) (the hosted Quirrel instance).
 
-1. Create a new project on the [Quirrel Dashboard](quirrel.dev/dashboard).
+1. Create a new project on the [Quirrel Dashboard](https://quirrel.dev/dashboard).
 
 <img src={require("./create-project.png").default} style={{ maxWidth: "500px"}}/>
 
