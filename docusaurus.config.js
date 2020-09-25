@@ -21,7 +21,7 @@ module.exports = {
       title: "Quirrel",
       logo: {
         alt: "Quirrel Logo Logo",
-        src: "https://tailwindui.com/img/logos/workflow-mark-on-white.svg",
+        src: "/img/horn_transparent.png",
         href: "https://quirrel.dev",
       },
       hideOnScroll: true,
