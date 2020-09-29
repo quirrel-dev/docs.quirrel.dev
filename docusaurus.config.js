@@ -7,6 +7,14 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "quirrel-dev", // Usually your GitHub org/user name.
   projectName: "Quirrel", // Usually your repo name.
+  scripts: [
+    {
+      async: true,
+      defer: true,
+      "data-website-id": "aedae061-a40e-4fc2-bdb5-e31df05a3b4a",
+      src: "https://umami.quirrel.dev/umami.js"
+    }
+  ],
   themeConfig: {
     announcementBar: {
       id: 'supportus',
