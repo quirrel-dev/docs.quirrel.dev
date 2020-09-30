@@ -15,9 +15,6 @@
   --ifm-color-primary-lighter: #f1a15e;
   --ifm-color-primary-lightest: #f4b886;
   --ifm-code-font-size: 95%;
-
-  --ifm-background-color: #fffdf8;
-  --ifm-background-surface-color: var(--ifm-background-color);
 }
 
 #__docusaurus > div.main-wrapper > div > div > div > a > strong {
