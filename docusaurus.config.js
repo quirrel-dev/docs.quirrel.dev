@@ -25,6 +25,11 @@ module.exports = {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/palenight'),
     },
+    algolia: {
+      apiKey: '2847a8b1da250cce60314892409484d8',
+      indexName: 'quirrel-next',
+      searchParameters: {}, // Optional (if provided by Algolia)
+    },
     navbar: {
       title: "Quirrel",
       logo: {
