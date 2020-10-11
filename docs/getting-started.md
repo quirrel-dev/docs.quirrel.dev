@@ -4,7 +4,7 @@ slug: /
 ---
 
 To get started with Quirrel, first setup your local development version.
-You'll need [Docker](https://www.docker.com/get-started) and [Docker-Compose](https://docs.docker.com/compose/install/), so go ahead and install these.
+You'll need [Docker](https://www.docker.com/get-started) and [Docker-Compose](https://docs.docker.com/compose/install/), so go ahead and install these. (Don't want to use Docker? [Try the CLI instead.](faq#i-dont-want-to-use-docker-what-shall-i-do))
 
 Paste the following into `docker-compose.yml` in your project root:
 
@@ -75,14 +75,14 @@ Using the Queue is straight forward. Simply import it and enqueue a new job:
 import EmailQueue from "pages/api/queues/email"
 
 export default async (req, res) => {
-    // ... create the user
+  // ... create the user
 
-    await EmailQueue.enqueue(
-        { ... },
-        {
-            delay: 24 * 3600 * 1000 // delay by 24 hours
-        }
-    )
+  await EmailQueue.enqueue(
+    { ... },
+    {
+      delay: 24 * 3600 * 1000 // delay by 24 hours
+    }
+  )
 }
 ```
 
@@ -92,6 +92,3 @@ After 24 hours elapsed, the Queues' worker function will receive it and then sen
 :::note
 Queues can be imported from any other server-side environment, like API Routes or `getServerSideProps`.
 :::
-
-
-
