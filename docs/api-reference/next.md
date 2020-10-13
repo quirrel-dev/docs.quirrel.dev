@@ -39,11 +39,12 @@ Enqueues a new Job and returns it.
 
 #### Options
 
-| Option | Type                  | Behaviour                                                                                          |
-| ------ | --------------------- | -------------------------------------------------------------------------------------------------- |
-| runAt  | Date                  | If set, the job is scheduled for a specific Date in the future.                                    |
-| delay  | number [milliseconds] | If set, the job will be delayed by the specified time. Use over `runAt` to prevent clock drift.    |
-| id     | string                | If there's a pending job with the same ID, this job is a no-op. Use when idempotency is important. |
+| Option | Type                            | Behaviour                                                                                          |
+| ------ | ------------------------------- | -------------------------------------------------------------------------------------------------- |
+| runAt  | Date                            | If set, the job is scheduled for a specific Date in the future.                                    |
+| delay  | number [milliseconds]           | If set, the job will be delayed by the specified time. Use over `runAt` to prevent clock drift.    |
+| id     | string                          | If there's a pending job with the same ID, this job is a no-op. Use when idempotency is important. |
+| repeat | { every: number, times: number} | Run a job multiple `times`, `every` X milliseconds.                                                |
 
 ### `.get`
 
