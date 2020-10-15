@@ -11,8 +11,8 @@ module.exports = {
     {
       async: true,
       defer: true,
-      "data-website-id": "aedae061-a40e-4fc2-bdb5-e31df05a3b4a",
-      src: "https://umami.quirrel.dev/umami.js"
+      "data-domain": "docs.quirrel.dev",
+      src: "https://plausible.io/js/plausible.js"
     }
   ],
   themeConfig: {
