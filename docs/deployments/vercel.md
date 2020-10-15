@@ -30,7 +30,9 @@ This guide assumes you've already setup your account on [quirrel.dev](https://qu
 
 <img src={require("./vercel-env-vars.png").default} style={{ maxWidth: "500px" }}/>
 
-4. [Set up Encryption](/encryption)
+4. Also add the `VERCEL_URL` env var. It will be populated by Vercel.
+
+5. [Set up Encryption](/encryption)
 
 <br/>
 <br/>
