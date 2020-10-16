@@ -29,22 +29,73 @@ async enqueue(
     payload: T,
     options: {
         runAt?: Date;
-        delay?: number;
+        delay?: number | string;
         id?: string;
+        repeat?: {
+            every?: number | string;
+            times?: number;
+            cron?: string;
+        }
     }
 ): Promise<Job<T>>
 ```
 
 Enqueues a new Job and returns it.
 
-#### Options
+#### Schedule for a specified date
 
-| Option | Type                            | Behaviour                                                                                          |
-| ------ | ------------------------------- | -------------------------------------------------------------------------------------------------- |
-| runAt  | Date                            | If set, the job is scheduled for a specific Date in the future.                                    |
-| delay  | number [milliseconds]           | If set, the job will be delayed by the specified time. Use over `runAt` to prevent clock drift.    |
-| id     | string                          | If there's a pending job with the same ID, this job is a no-op. Use when idempotency is important. |
-| repeat | { every: number, times: number} | Run a job multiple `times`, `every` X milliseconds.                                                |
+```ts
+birthdayQueue.enqueue(
+    user.id,
+    {
+        runAt: user.birthday
+    }
+);
+```
+
+#### Delay by a week
+
+```ts
+welcomeUserQueue.enqueue(
+    user.id,
+    {
+        delay: "7d" // same as 7 * 24 * 60 * 60 * 1000
+    }
+);
+```
+
+#### Repeated job
+
+```ts
+todoReminders.enqueue(
+    todo.id,
+    {
+        runAt: todo.scheduled_date,
+        id: todo.id,
+        repeat: {
+            every: "1d",
+            times: 3
+        }
+    }
+);
+```
+
+Runs three times: At `scheduled_date`, one day later and two days later.
+
+#### CRON Job
+
+```ts
+billingQueue.enqueue(
+    undefined,
+    {
+        id: "billing", // makes sure job isn't duplicated
+        repeat: {
+            cron: "* * * * 1 *"
+        }
+    }
+);
+```
+
 
 ### `.get`
 
@@ -59,7 +110,6 @@ for await (const jobs of queue.get()) {
     // do something
 }
 ```
-
 
 ### `.getById`
 
@@ -125,6 +175,20 @@ runAt: Date
 ```
 
 The date the job is scheduled for.
+
+### `repeat`
+
+```ts
+{
+    cron?: string;
+    times?: number;
+    every?: number;
+    count: number;
+}
+```
+
+Repetition options of the job.
+`count` starts at `1` and is incremented with every execution.
 
 ### `.invoke`
 
