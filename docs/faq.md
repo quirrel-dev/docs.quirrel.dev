@@ -29,3 +29,12 @@ You can use something like [`concurrently`](https://github.com/kimmobrunfeldt/co
     ...
 }
 ```
+
+## How can I opt out of telemetry?
+
+Telemetry allows us to accurately gauge Quirrels feature usage and pain points across all users.
+This data will let us better tailor Quirrel to users, ensuring its best-in-class developer experience.
+
+Quirrel collects completely anonymous telemetry data about general usage, it also sends error reports to Sentry.
+Participation in this anonymous program is optional, and you may opt-out if you'd not like to share any information.
+To opt-out, set the DISABLE_TELEMETRY environment variable to 1.
