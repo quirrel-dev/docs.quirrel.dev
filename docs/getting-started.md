@@ -3,6 +3,8 @@ title: Getting Started
 slug: /
 ---
 
+> If you're more of a tutorials person, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).
+
 To get started with Quirrel, first setup your local development version.
 You'll need [Docker](https://www.docker.com/get-started) and [Docker-Compose](https://docs.docker.com/compose/install/), so go ahead and install these. (Don't want to use Docker? [Try the CLI instead.](faq#i-dont-want-to-use-docker-what-shall-i-do))
 
