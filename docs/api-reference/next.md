@@ -96,6 +96,7 @@ billingQueue.enqueue(
 );
 ```
 
+CRON jobs are scheduled based on UTC.
 
 ### `.get`
 
