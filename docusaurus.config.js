@@ -12,22 +12,26 @@ module.exports = {
       async: true,
       defer: true,
       "data-domain": "docs.quirrel.dev",
-      src: "https://plausible.io/js/plausible.js"
-    }
+      src: "https://plausible.io/js/plausible.js",
+    },
+    {
+      defer: true,
+      src: "https://feedback.fish/ff.js?pid=a69c8256a9a967",
+    },
   ],
   themeConfig: {
     announcementBar: {
-      id: 'supportus',
+      id: "supportus",
       content:
         '⭐️ If you like Quirrel, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/quirrel-dev/quirrel">GitHub</a>! ⭐️',
     },
     prism: {
-      theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/palenight'),
+      theme: require("prism-react-renderer/themes/github"),
+      darkTheme: require("prism-react-renderer/themes/palenight"),
     },
     algolia: {
-      apiKey: '2847a8b1da250cce60314892409484d8',
-      indexName: 'quirrel-next',
+      apiKey: "2847a8b1da250cce60314892409484d8",
+      indexName: "quirrel-next",
       searchParameters: {}, // Optional (if provided by Algolia)
     },
     navbar: {
@@ -44,6 +48,11 @@ module.exports = {
           activeBasePath: "docs",
           label: "Docs",
           position: "left",
+        },
+        {
+          "data-feedback-fish": "",
+          label: "Feedback",
+          position: "right",
         },
         {
           href: "https://github.com/quirrel-dev",
