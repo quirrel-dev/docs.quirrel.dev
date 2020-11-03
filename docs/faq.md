@@ -14,18 +14,13 @@ Replacing your leaked secret with a new one, do the following:
 
 If you're using the managed Quirrel deployment, feel free to [reach out](mailto:info@quirrel.dev) to get further assistance.
 
-## I don't want to use Docker. What shall I do?
-
-If you already have Redis running, you can use the Quirrel CLI.
-Install by running `npm install --global quirrel`, then run `quirrel` to start it.
-
 ## How can I make Quirrel automatically startup with my dev environment?
 
 You can use something like [`concurrently`](https://github.com/kimmobrunfeldt/concurrently):
 
 ```json
 "scripts": {
-    "dev": "concurrently --raw \"docker-compose up\" \"next dev\"",
+    "dev": "concurrently --raw \"quirrel\" \"next dev\"",
     ...
 }
 ```

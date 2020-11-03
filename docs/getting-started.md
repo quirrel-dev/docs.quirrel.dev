@@ -5,41 +5,22 @@ slug: /
 
 > If you're more of a tutorials person, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).
 
-To get started with Quirrel, first setup your local development version.
-You'll need [Docker](https://www.docker.com/get-started) and [Docker-Compose](https://docs.docker.com/compose/install/), so go ahead and install these. (Don't want to use Docker? [Try the CLI instead.](faq#i-dont-want-to-use-docker-what-shall-i-do))
-
-Paste the following into `docker-compose.yml` in your project root:
-
-```yaml
-version: "3.7"
-
-services:
-  quirrel:
-    image: ghcr.io/quirrel-dev/quirrel
-    environment:
-      REDIS_URL: redis://redis
-    ports:
-      - "9181:9181"
-
-  redis:
-    image: redis
-```
-
-Then run `docker-compose up`.
-Now your local development environment is running and available on [localhost:9181](http://localhost:9181).
+To get started with Quirrel, install the CLI by running `npm install -g quirrel`.
+Open a new terminal and run `quirrel` to start the local development environment.
+It will be available on [localhost:9181](http://localhost:9181).
 
 :::note
 `9181` is "the Quirrel port", just like `3306` is "the MySQL port". Using other ports requires additional configuration.
 :::
 
-Install Quirrel's Next.js library:
+Next, install Quirrel's Next.js library:
 
 ```bash
 npm install @quirrel/next
 yarn add @quirrel/next
 ```
 
-This is all we need to setup our first Queue!
+This is all we need to start creating our first Queue!
 
 ## Our first Queue
 
