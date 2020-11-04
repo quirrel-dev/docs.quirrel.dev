@@ -6,7 +6,7 @@ module.exports = {
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "quirrel-dev", // Usually your GitHub org/user name.
-  projectName: "Quirrel", // Usually your repo name.
+  projectName: "quirrel", // Usually your repo name.
   scripts: [
     {
       async: true,
@@ -39,14 +39,19 @@ module.exports = {
       logo: {
         alt: "Quirrel Logo Logo",
         src: "/img/horn_transparent.png",
-        href: "https://quirrel.dev",
       },
       hideOnScroll: true,
       items: [
         {
-          to: "/",
+          to: "/docs",
           activeBasePath: "docs",
           label: "Docs",
+          position: "left",
+        },
+        {
+          to: "/api",
+          activeBasePath: "api",
+          label: "API",
           position: "left",
         },
         {
@@ -127,7 +132,6 @@ module.exports = {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
           editUrl:
             "https://github.com/quirrel-dev/docs.quirrel.dev/edit/master/",
         },

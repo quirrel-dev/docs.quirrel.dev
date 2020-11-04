@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-slug: /
+slug: /docs
 ---
 
 > If you're more of a tutorials person, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).

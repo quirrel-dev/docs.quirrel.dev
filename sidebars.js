@@ -1,15 +1,24 @@
 module.exports = {
   docs: [
-    "getting-started",
-    "development-ui",
-    "api-reference/next",
-    "encryption",
+    "docs/getting-started",
+    "docs/development-ui",
+    "docs/encryption",
     {
       type: "category",
       label: "Deployment",
       collapsed: false,
-      items: ["deployments/vercel"],
+      items: ["docs/deployments/vercel"],
     },
-    "faq",
+    "docs/faq",
   ],
+  api: [
+    "api",
+    {
+      type: "category",
+      label: "Clients",
+      collapsed: false,
+      items: ["api/next"],
+    },
+    
+  ]
 };
