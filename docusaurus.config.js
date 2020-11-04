@@ -79,7 +79,7 @@ module.exports = {
             },
             {
               label: "Deploy to Vercel",
-              to: "/deployments/vercel",
+              to: "/docs/deploying/vercel",
             },
           ],
         },
