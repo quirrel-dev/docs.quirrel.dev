@@ -39,6 +39,7 @@ module.exports = {
       logo: {
         alt: "Quirrel Logo Logo",
         src: "/img/horn_transparent.png",
+        href: "https://quirrel.dev",
       },
       hideOnScroll: true,
       items: [

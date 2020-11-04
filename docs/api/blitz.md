@@ -2,7 +2,7 @@
 title: Blitz.js
 ---
 
-Since Blitz.js is based on Next.js, the [Getting-Started for Next.js](docs/getting-started/next-js) works mostly fine for Blitz users.
+Since Blitz.js users use the Next.js Quirrel client, the [Next.js API Reference](api/next) works fine for Blitz users.
 
 :::caution
 There currently is [a bug](https://github.com/blitz-js/blitz/issues/1013) in Blitz.js that will make you face a `Module not found` error when working with Quirrel.

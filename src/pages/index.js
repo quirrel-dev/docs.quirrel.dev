@@ -1,10 +1,8 @@
-import Layout from "@theme/Layout";
 import React from "react";
+import { Redirect } from "@docusaurus/router"
 
 export default function Index() {
   return (
-    <Layout>
-      <h1>Hello World!</h1>
-    </Layout>
+    <Redirect to="/docs" />
   );
 }

@@ -2,35 +2,55 @@
 title: Next.js
 ---
 
-> If you're more of a tutorials person, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).
+This document guides you through setting up Quirrel and creating your first queue in an existing project.
 
-To get started with Quirrel, install the CLI by running `npm install -g quirrel`.
-Open a new terminal and run `quirrel` to start the local development environment.
-It will be available on [localhost:9181](http://localhost:9181).
+If you're looking for a tutorial instead, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).
+
+## Installation
+
+Architecturally, Quirrel consists of two main parts:
+
+1. The Quirrel *server* receives jobs from your application and then makes requests back to it whenever a job is due.
+2. The Quirrel *client* is used by your application to interface with the server.
+
+First, we're gonna setup the Quirrel server locally.
+To install it, simply run `npm install quirrel` in your project root,
+then start it by running `npx quirrel`.
+That's it!
 
 :::note
-`9181` is "the Quirrel port", just like `3306` is "the MySQL port". Using other ports requires additional configuration.
+You can use [`concurrently`](https://github.com/kimmobrunfeldt/concurrently)
+to have the Quirrel server be started together with Next:
+```json
+"scripts": {
+  "dev": "concurrently \"next dev\" quirrel"
+}
+```
 :::
 
-Next, install Quirrel's Next.js library:
+:::note
+By default, the server doesn't persist any data.
+If you need your jobs to be persisted *in development*, provide connection details for a Redis instance using the  `--redis` option.
+:::
+
+Now that our Quirrel server is running, let's install the client library:
 
 ```bash
 npm install @quirrel/next
-yarn add @quirrel/next
 ```
 
-This is all we need to start creating our first Queue!
+This is all we need to create our first Queue!
 
-## Our first Queue
+## Your first Queue
 
 Create a new [API Route](https://nextjs.org/docs/api-routes/introduction) at `pages/api/queues/email.js` and paste the following: 
 
-```js {5}
+```js
 // pages/api/queues/email.js
 import { Queue } from "@quirrel/next"
 
 export default Queue(
-  "queues/email", // 👈 filename sans "pages/api/"
+  "queues/email", // 👈 the location it's reachable on, sans api/
   async job => {
     await email.send( ... )
   }
@@ -45,48 +65,39 @@ We then call it to create a new Queue and export it as default, so it can take r
 
 [^1]: If you're interested to see how that works, take a look at [the source code](https://github.com/quirrel-dev/quirrel-next/blob/86658c96971d8d4179de8ca9f2cb513b8aae4c93/src/index.ts#L54)
 
-1. its location (sans `/api/`, so `queues/email` in our case)
-2. a worker function that's executed for every job
-
-The worker function takes the job's payload as its first argument and must return a `Promise`.
+1. its location (sans `api/`, so `queues/email` in our case)
+2. a worker function that actually executes the job
 
 Using the Queue is straight forward. Simply import it and enqueue a new job:
 
-```ts
-// pages/api/signup.js
+```ts {6-9}
 import EmailQueue from "pages/api/queues/email"
 
+// could be some API route / getServerSideProps / ...
 export default async (req, res) => {
-  // ... create the user
 
   await EmailQueue.enqueue(
-    { ... },
-    {
-      delay: 24 * 3600 * 1000 // delay by 24 hours
-    }
+    ..., // job to be enqueued
+    { delay: "24h" } // scheduling options
   )
+
 }
 ```
 
-This will enqueue a new delayed job.
-After 24 hours elapsed, the Queues' worker function will receive it and then send the e-mail.
+Calling `.enqueue` will trigger a call to the Quirrel server to enqueue a new job.
+After 24h, when the job is due, the Queue's worker function will receive the job payload and execute it.
 
-:::note
-Queues can be imported from any other server-side environment, like API Routes or `getServerSideProps`.
-:::
+## Meet the Development UI
 
-## Development UI
+Waiting for 24hrs can be quite boring.
+To speed up development, Quirrel allows you to monitor pending jobs in the Development UI.
 
-TODO: integrate
+To use it, simply run `quirrel ui` or open [ui.quirrel.dev](https://ui.quirrel.dev) in your browser.
 
-Quirrel features an easy-to-use development UI that can be used to monitor and manage pending jobs during development.
-
-<img src={require("./dev-ui.png").default} alt="Screenshot of the Development UI" height="600rem"/>
-
-To use it, just open [ui.quirrel.dev](https://ui.quirrel.dev).
-It runs fully client-side and works by connecting to `localhost:9181` (the Quirrel port).
+<img src={require("./dev-ui.png").default} alt="Screenshot of the Development UI" height="400rem"/>
 
 :::caution
-This does not work on Safari.
+The Development UI connects to your local Quirrel instance on the client-side.
+It thus currently does not work in Safari.
 :::
 

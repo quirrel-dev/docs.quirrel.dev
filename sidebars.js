@@ -13,16 +13,16 @@ module.exports = {
       collapsed: false,
       items: ["docs/deploying/vercel"],
     },
-    "docs/how-quirrel-works",
+    // "docs/how-quirrel-works",
     "docs/faq",
   ],
   api: [
-    "api",
+    "api/api",
     {
       type: "category",
       label: "Clients",
       collapsed: false,
-      items: ["api/next"],
+      items: ["api/next", "api/blitz"],
     },
   ],
 };
