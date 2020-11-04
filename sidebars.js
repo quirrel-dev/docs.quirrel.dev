@@ -1,14 +1,19 @@
 module.exports = {
   docs: [
-    "docs/getting-started",
-    "docs/development-ui",
-    "docs/encryption",
+    "docs/introduction",
     {
       type: "category",
-      label: "Deployment",
+      label: "Getting Started",
       collapsed: false,
-      items: ["docs/deployments/vercel"],
+      items: ["docs/getting-started/next-js", "docs/getting-started/blitz-js"],
     },
+    {
+      type: "category",
+      label: "Deploying",
+      collapsed: false,
+      items: ["docs/deploying/vercel"],
+    },
+    "docs/how-quirrel-works",
     "docs/faq",
   ],
   api: [
@@ -19,6 +24,5 @@ module.exports = {
       collapsed: false,
       items: ["api/next"],
     },
-    
-  ]
+  ],
 };

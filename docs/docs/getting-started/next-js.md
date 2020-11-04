@@ -1,6 +1,5 @@
 ---
-title: Getting Started
-slug: /docs
+title: Next.js
 ---
 
 > If you're more of a tutorials person, check out the [Water Drinking Reminder Tutorial](https://dev.to/quirrel/building-a-water-drinking-reminder-with-next-js-and-quirrel-1ckj).
@@ -75,3 +74,19 @@ After 24 hours elapsed, the Queues' worker function will receive it and then sen
 :::note
 Queues can be imported from any other server-side environment, like API Routes or `getServerSideProps`.
 :::
+
+## Development UI
+
+TODO: integrate
+
+Quirrel features an easy-to-use development UI that can be used to monitor and manage pending jobs during development.
+
+<img src={require("./dev-ui.png").default} alt="Screenshot of the Development UI" height="600rem"/>
+
+To use it, just open [ui.quirrel.dev](https://ui.quirrel.dev).
+It runs fully client-side and works by connecting to `localhost:9181` (the Quirrel port).
+
+:::caution
+This does not work on Safari.
+:::
+

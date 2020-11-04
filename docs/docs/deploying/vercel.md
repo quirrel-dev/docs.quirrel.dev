@@ -1,5 +1,5 @@
 ---
-title: Deploy to Vercel
+title: Vercel
 ---
 
 This guide assumes you've already setup your account on [quirrel.dev](https://quirrel.dev) (the hosted Quirrel instance).
@@ -31,6 +31,18 @@ This guide assumes you've already setup your account on [quirrel.dev](https://qu
 <img src={require("./vercel-env-vars.png").default} style={{ maxWidth: "500px" }}/>
 
 4. Set the `QUIRREL_BASE_URL` environment variable to the location URL your deployment is reachable on, e.g. `https://mywebsite.com`. This is the URL that Quirrel will make its calls against.
+
+
+## Setting up end-to-end encryption
+TODO: fit in
+Production deployments are required to use end-to-end-encryption.
+
+1. Generate your 32-character-long secret.
+    `openssl rand -hex 16` or 
+    [random.org](https://www.random.org/strings/?num=2&len=16&digits=on&upperalpha=on&loweralpha=on&unique=on&format=html&rnd=new) works great.
+1. Set the `QUIRREL_ENCRYPTION_SECRET` environment variable to your secret.
+
+
 
 5. [Set up Encryption](/encryption)
 
