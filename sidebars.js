@@ -7,13 +7,8 @@ module.exports = {
       collapsed: false,
       items: ["docs/getting-started/next-js", "docs/getting-started/blitz-js"],
     },
-    {
-      type: "category",
-      label: "Deploying",
-      collapsed: false,
-      items: ["docs/deploying/vercel"],
-    },
-    // "docs/how-quirrel-works",
+    "docs/deploying",
+    "docs/how-quirrel-works",
     "docs/faq",
   ],
   api: [

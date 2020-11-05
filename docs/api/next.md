@@ -2,7 +2,9 @@
 title: Next.js
 ---
 
-<!--TODO: write some more-->
+This is the API Reference for the Next.js x Quirrel client.
+
+Install it by running `npm install @quirrel/next`.
 
 ## `Queue`
 

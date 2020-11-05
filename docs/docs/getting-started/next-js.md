@@ -57,18 +57,17 @@ export default Queue(
 )
 ```
 
-Alright. What's going on here?
+Up top, we're importing `Queue`, which is a function that we use to declare a new Queue and export it as default.
 
-First, we're importing `Queue` from `@quirrel/next`.
-We then call it to create a new Queue and export it as default, so it can take requests from outside [^1].
-`Queue` takes two arguments:
+`Queue` takes two arguments.  
+The first one is the location of the API Route it's been declared in.
+This is required for the Quirrel server to know where jobs need to be sent upon execution.  
+The second one is a worker function that actually executes the job.
+In this example, it sends an email.
 
-[^1]: If you're interested to see how that works, take a look at [the source code](https://github.com/quirrel-dev/quirrel-next/blob/86658c96971d8d4179de8ca9f2cb513b8aae4c93/src/index.ts#L54)
 
-1. its location (sans `api/`, so `queues/email` in our case)
-2. a worker function that actually executes the job
-
-Using the Queue is straight forward. Simply import it and enqueue a new job:
+Now that we declared the Queue, using it is straight forwward.
+Simply import it and enqueue a new job:
 
 ```ts {6-9}
 import EmailQueue from "pages/api/queues/email"
@@ -85,12 +84,12 @@ export default async (req, res) => {
 ```
 
 Calling `.enqueue` will trigger a call to the Quirrel server to enqueue a new job.
-After 24h, when the job is due, the Queue's worker function will receive the job payload and execute it.
+After 24 hours, when the job is due, the Queue's worker function will receive the job payload and execute it.
 
 ## Meet the Development UI
 
-Waiting for 24hrs can be quite boring.
 To speed up development, Quirrel allows you to monitor pending jobs in the Development UI.
+In there, you can also manually invoke jobs, so you don't have to wait for 24 hours everytime you test something.
 
 To use it, simply run `quirrel ui` or open [ui.quirrel.dev](https://ui.quirrel.dev) in your browser.
 
