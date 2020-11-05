@@ -78,8 +78,8 @@ module.exports = {
               to: "/",
             },
             {
-              label: "Deploy to Vercel",
-              to: "/docs/deploying/vercel",
+              label: "Deploy",
+              to: "/docs/deploying",
             },
           ],
         },
