@@ -11,7 +11,8 @@ Install it by running `npm install @quirrel/next`.
 ```ts
 function Queue<T>(
     path: string,
-    worker: (job: T): Promise<void>
+    worker: (job: T): Promise<void>,
+    queueOptions?: { exclusive?: boolean }
 ): QueueInstance<T>
 ```
 
@@ -20,10 +21,11 @@ Make sure to export it from an [API Route](https://nextjs.org/docs/api-routes/in
 
 #### Parameters
 
-| Parameter | Usage                                                                   |
-| --------- | ----------------------------------------------------------------------- |
-| `path`    | The queue's path. `queues/email` if reachable under `api/queues/email`. |
-| `worker`  | a function that takes the job's payload and returns a `Promise`         |
+| Parameter      | Usage                                                                       |
+| -------------- | --------------------------------------------------------------------------- |
+| `path`         | The queue's path. `queues/email` if reachable under `api/queues/email`.     |
+| `worker`       | a function that takes the job's payload and returns a `Promise`             |
+| `queueOptions` | Optional. Use the `exclusive` flag to limit this Queue to serial execution. |
 
 
 ### `.enqueue`
@@ -32,14 +34,18 @@ Make sure to export it from an [API Route](https://nextjs.org/docs/api-routes/in
 async enqueue(
     payload: T,
     options: {
+        id?: string;
+        override?: boolean;
+
         runAt?: Date;
         delay?: number | string;
-        id?: string;
         repeat?: {
             every?: number | string;
             times?: number;
             cron?: string;
         }
+
+        exclusive?: boolean;
     }
 ): Promise<Job<T>>
 ```
@@ -93,6 +99,7 @@ billingQueue.enqueue(
     undefined,
     {
         id: "billing", // makes sure job isn't duplicated
+        override: true, // if another job with that ID already exists, override it
         repeat: {
             cron: "* * * * 1 *"
         }
@@ -101,6 +108,20 @@ billingQueue.enqueue(
 ```
 
 CRON jobs are scheduled based on UTC.
+
+#### Order Queue
+
+```ts
+orderQueue.enqueue(
+    { ... },
+    {
+        id: "1234", // if two jobs share the same `runAt`, they're ordered by ID.
+        exclusive: true, // make sure only one job is executed at once
+    }
+);
+```
+
+You can also specify `{ exclusive: true }` as the third argument to the `Queue` constructor.
 
 ### `.get`
 
@@ -194,6 +215,15 @@ The date the job is scheduled for.
 
 Repetition options of the job.
 `count` starts at `1` and is incremented with every execution.
+
+### `exclusive`
+
+```ts
+exclusive: boolean
+```
+
+If a job is marked as `exclusive`, that means there won't be any other job executed at the same time.
+If applied to all jobs in a queue, that effectively guarantees serial execution.
 
 ### `.invoke`
 
