@@ -17,7 +17,7 @@ module.exports = {
       type: "category",
       label: "Clients",
       collapsed: false,
-      items: ["api/next", "api/blitz"],
+      items: ["api/next", "api/blitz", "api/vercel"],
     },
   ],
 };
