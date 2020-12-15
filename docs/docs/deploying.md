@@ -20,5 +20,5 @@ If it doesn't, feel free to [reach out](mailto:troubleshooting@quirrel.dev).
 For most people, the [hosted version](https://quirrel.dev) of Quirrel is the easiest, and probably also cheapest way of using Quirrel (there's a free tier if your project is just starting out, and OSS and side projects can apply for discounts).
 
 If you still want to host Quirrel yourself, you can do so using the [Docker Image](https://github.com/orgs/quirrel-dev/packages/container/package/quirrel).
-This requires you to set the `QUIRREL_URL` variable to the location of your deployment (it defaults to `api.quirrel.dev`).
+This requires you to set the `QUIRREL_URL` variable to the location of your deployment (it defaults to `https://api.quirrel.dev`).
 The `QUIRREL_TOKEN` can be obtained using the server's [REST API](https://api.quirrel.dev/documentation/index.html#/default/put_tokens__id_).
